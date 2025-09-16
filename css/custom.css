@@ -1,0 +1,12 @@
+.bg-indigo {
+  background-color: #4B0082 !important;
+}
+
+.text-indigo {
+  color: #4B0082 !important;
+}
+
+/* Optional: subtle shadow behind the header image */
+header img.rounded-circle {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
