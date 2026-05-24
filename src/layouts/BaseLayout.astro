@@ -20,8 +20,6 @@ const { title, activePage } = Astro.props;
   <body>
     <nav>
       <a href="/" class={activePage === 'cv' ? 'active' : ''}>CV</a>
-      <a href="/work" class={activePage === 'work' ? 'active' : ''}>Work</a>
-      <a href="/projects" class={activePage === 'projects' ? 'active' : ''}>Projects</a>
       <span class="spacer"></span>
       <a href="/assets/cv.pdf" download class="download-btn">Download CV ↓</a>
     </nav>
