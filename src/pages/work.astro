@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { workProjects } from '../data/projects';
+---
+
+<BaseLayout title="Work Projects — Maxim Keremet" activePage="work">
+  <h1 class="page-title">Work Projects</h1>
+  <p class="page-subtitle">Selected projects from professional roles at Netflix, Wolt, X5 and more.</p>
+  <div class="projects-grid">
+    {workProjects.map((project) => <ProjectCard project={project} />)}
+  </div>
+</BaseLayout>
