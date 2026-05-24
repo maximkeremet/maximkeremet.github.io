@@ -1,0 +1,26 @@
+---
+import type { EducationEntry } from '../data/cv';
+
+interface Props {
+  education: EducationEntry[];
+}
+
+const { education } = Astro.props;
+---
+
+<section>
+  <h2 class="section-title">Education</h2>
+  <hr class="section-divider" />
+  {education.map((entry) => (
+    <div class="edu-entry">
+      <div class="edu-left">
+        <div class="edu-school">{entry.school}</div>
+        <div class="edu-degree">{entry.degree}</div>
+      </div>
+      <div class="edu-right">
+        <div class="edu-location">{entry.location}</div>
+        <div class="edu-dates">{entry.start} – {entry.end}</div>
+      </div>
+    </div>
+  ))}
+</section>

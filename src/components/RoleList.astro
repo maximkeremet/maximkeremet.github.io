@@ -1,0 +1,35 @@
+---
+import type { Role } from '../data/cv';
+
+interface Props {
+  title: string;
+  roles: Role[];
+}
+
+const { title, roles } = Astro.props;
+---
+
+<section>
+  <h2 class="section-title">{title}</h2>
+  <hr class="section-divider" />
+  {roles.map((role) => (
+    <div class="role">
+      <div class="role-header">
+        <span class="role-company">
+          {role.company}
+          {role.companyNote && (
+            <span class="role-company-note"> ({role.companyNote})</span>
+          )}
+        </span>
+        <span class="role-location">{role.location}</span>
+      </div>
+      <div class="role-header">
+        <span class="role-title">{role.title}</span>
+        <span class="role-dates">{role.start} – {role.end}</span>
+      </div>
+      <ul class="role-bullets">
+        {role.bullets.map((bullet) => <li>{bullet}</li>)}
+      </ul>
+    </div>
+  ))}
+</section>
