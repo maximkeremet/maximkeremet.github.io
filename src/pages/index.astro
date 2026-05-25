@@ -10,13 +10,13 @@ import { profile, skills, experience, extracurricular, education } from '../data
 <BaseLayout title="Maxim Keremet — Data Engineer" activePage="cv">
   <Hero profile={profile} />
   <div class="cv-layout">
-    <aside class="cv-sidebar">
-      <SkillsSection skills={skills} />
-    </aside>
     <div class="cv-main">
       <RoleList title="Experience" roles={experience} />
       <RoleList title="Extracurricular Activity" roles={extracurricular} />
       <EducationSection education={education} />
     </div>
+    <aside class="cv-sidebar">
+      <SkillsSection skills={skills} />
+    </aside>
   </div>
 </BaseLayout>

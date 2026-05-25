@@ -28,7 +28,7 @@ export const profile = {
   github: 'maximkeremet',
   linkedin: 'maximkeremet',
   location: 'Helsinki, Finland',
-  status: 'Blue card holder',
+  status: 'Blue card holder, qualified to work in EU',
   avatarPath: '/images/avatar.jpg',
 };
 
