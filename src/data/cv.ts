@@ -64,6 +64,7 @@ export const experience: Role[] = [
   },
   {
     company: 'Wolt',
+    companyNote: 'food delivery platform',
     title: 'Data Engineer / Software Engineer',
     location: 'Helsinki, Finland',
     start: 'Aug 2022',
