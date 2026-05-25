@@ -106,7 +106,7 @@ export const experience: Role[] = [
     title: 'Data Engineer / Product Analyst',
     location: 'St. Petersburg, Russia',
     start: 'Feb 2020',
-    end: 'Nov 2020',
+    end: 'Nov 2021',
     bullets: [
       'Built pipeline for collecting product metrics for all analytical use cases.',
       'Performed analytical ad-hoc analysis tasks (EDA, product and tech performance dashboards, coronavirus reporting, etc.).',
