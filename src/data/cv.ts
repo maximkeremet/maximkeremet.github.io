@@ -49,8 +49,8 @@ export const skills: SkillCategory[] = [
 
 export const experience: Role[] = [
   {
-    company: 'Next Games',
-    companyNote: 'a Netflix Games studio',
+    company: 'Netflix Games',
+    companyNote: 'Next Games studio',
     title: 'Senior Data Engineer',
     location: 'Helsinki, Finland',
     start: 'Oct 2024',
