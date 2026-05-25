@@ -35,7 +35,7 @@ export const profile = {
 export type Profile = typeof profile;
 
 export const skills: SkillCategory[] = [
-  { category: 'Agentic Coding', items: 'Claude Code, Prompt Engineering, Context Engineering, Custom AI Agents, AI Code Review, Agentic Workflows, LLM Tool Use' },
+  { category: 'Agentic Coding', items: 'Claude Code, Custom AI Agents, Agentic Workflows, Context Engineering, Strands SDK, Braintrust' },
   { category: 'Programming & data processing', items: 'Python, Java (Spring Boot), SQL, Spark (PySpark, Scala Spark, MLlib), Bash' },
   { category: 'Pipelines & orchestration', items: 'Airflow, Dagster, Mage' },
   { category: 'Streaming & real-time', items: 'Kafka, AWS Kinesis, Flink, Druid' },
