@@ -40,10 +40,10 @@ export const skills: SkillCategory[] = [
   { category: 'Pipelines & orchestration', items: 'Airflow, Dagster, Mage' },
   { category: 'Streaming & real-time', items: 'Kafka, AWS Kinesis, Flink, Druid' },
   { category: 'Storage & warehousing', items: 'Snowflake, ClickHouse, PostgreSQL, Hadoop (HDFS, Hive), Iceberg, Alembic, S3' },
-  { category: 'Visualization & BI', items: 'Superset/Preset, Dash, Streamlit, Grafana' },
+  { category: 'Visualization & BI', items: 'Superset/Preset, Dash, Streamlit' },
   { category: 'Cloud platforms', items: 'AWS, GCP, Yandex.Cloud' },
   { category: 'DevOps & infra', items: 'Docker, Kubernetes, Helm, Terraform' },
-  { category: 'Observability & reliability', items: 'Prometheus, Datadog, Sentry' },
+  { category: 'Observability & reliability', items: 'Prometheus, Datadog, Sentry, Grafana' },
   { category: 'MLOps & experimentation', items: 'MLflow, Feast' },
 ];
 
