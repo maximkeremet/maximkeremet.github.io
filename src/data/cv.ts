@@ -36,10 +36,10 @@ export type Profile = typeof profile;
 
 export const skills: SkillCategory[] = [
   { category: 'Agentic Coding', items: 'Claude Code, Custom AI Agents, Agentic Workflows, Context Engineering, Strands SDK, Braintrust' },
-  { category: 'Programming & data processing', items: 'Python, Java (Spring Boot), SQL, Spark (PySpark, Scala Spark, MLlib), Bash' },
+  { category: 'Programming & data processing', items: 'Python, Java (Spring Boot), SQL, Spark (PySpark/Scala/MLlib), Bash' },
   { category: 'Pipelines & orchestration', items: 'Airflow, Dagster, Mage' },
   { category: 'Streaming & real-time', items: 'Kafka, AWS Kinesis, Flink, Druid' },
-  { category: 'Storage & warehousing', items: 'Snowflake, ClickHouse, PostgreSQL, Hadoop (HDFS, Hive), Iceberg, Alembic, S3' },
+  { category: 'Storage & warehousing', items: 'Snowflake, ClickHouse, PostgreSQL, Hadoop (HDFS/Hive), Iceberg, Alembic, S3' },
   { category: 'Visualization & BI', items: 'Superset/Preset, Dash, Streamlit' },
   { category: 'Cloud platforms', items: 'AWS, GCP, Yandex.Cloud' },
   { category: 'DevOps & infra', items: 'Docker, Kubernetes, Helm, Terraform' },
