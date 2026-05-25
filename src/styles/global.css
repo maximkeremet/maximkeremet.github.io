@@ -390,12 +390,3 @@ nav .download-btn:hover {
   white-space: nowrap;
 }
 
-.skill-group:first-child .skill-badge {
-  background: #fdf0eb;
-  color: var(--accent);
-  border: 1px solid #f5c9b5;
-}
-
-.skill-group:first-child .skill-category {
-  color: var(--accent);
-}
