@@ -11,14 +11,16 @@ const { skills } = Astro.props;
 <section>
   <h2 class="section-title">Skills</h2>
   <hr class="section-divider" />
-  <table class="skills-table">
-    <tbody>
-      {skills.map(({ category, items }) => (
-        <tr>
-          <td>{category}</td>
-          <td>{items}</td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
+  <div class="skills-list">
+    {skills.map(({ category, items }) => (
+      <div class="skill-group">
+        <div class="skill-category">{category}</div>
+        <div class="skill-badges">
+          {items.split(',').map((item) => (
+            <span class="skill-badge">{item.trim()}</span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
 </section>

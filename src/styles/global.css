@@ -339,3 +339,53 @@ nav .download-btn:hover {
   color: var(--text-muted);
   margin-bottom: 2rem;
 }
+
+/* Two-column CV layout */
+.cv-layout {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.cv-sidebar {
+  position: sticky;
+  top: 1rem;
+}
+
+/* Skills badges */
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.skill-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.skill-category {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.skill-badge {
+  background: #f0f0f0;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
