@@ -65,7 +65,7 @@ export const experience: Role[] = [
   },
   {
     company: 'Wolt',
-    companyNote: 'food delivery platform',
+    companyNote: 'food delivery service, European subsidiary of DoorDash',
     title: 'Data Engineer / Software Engineer',
     location: 'Helsinki, Finland',
     start: 'Aug 2022',
