@@ -56,11 +56,11 @@ export const experience: Role[] = [
     start: 'Oct 2024',
     end: 'Current',
     bullets: [
-      'Being a part of DSE (Data Science and Engineering) team, contributing to data engineering practices and backend services.',
-      'Maintaining and evolving core services and infrastructure for game studio streaming analytics.',
-      'Building analytics-oriented batch pipelines for game analysts and infrastructure-oriented pipelines for monitoring game and services health, AB testing, etc.',
-      'Contributing to and supporting analytics tools for internal stakeholders.',
-      'Refactoring services from Python to Java Flink services to align with Netflix paved roads and infrastructure standards.',
+      'Maintain and enhance the full data engineering stack for Next Games studio — raw event streaming pipelines, batch ETL pipelines for analytical datasets, and a suite of backend applications serving player support, core games backend, product managers, and studio leadership; aligning all work with Netflix paved road infrastructure standards.',
+      'Engineered a context-driven agentic analytics platform where AI agent skills supply structured context — layering rules, schema conventions, table definition templates — that routes an agent to scaffold production-grade data pipelines and self-service dashboards end-to-end, enforcing architectural conventions and import-layer constraints without manual review bottleneck.',
+      'Built a suite of specialised data engineering agents (Strands SDK + Claude Sonnet) that improve team reliability and day-to-day productivity: a workflow triage agent that monitors the data platform for pipeline failures, diagnoses root causes through structured reasoning, and auto-restarts or escalates with guardrails (audit hook, S3-backed deduplication state); and a context-aware contribution review agent grounded in platform documentation via RAG semantic search, ensuring data pipeline contributions meet quality and convention standards consistently.',
+      'Designed and maintained game analytics data pipelines (in-house orchestrator + Spark SQL + Apache Iceberg) for KPIs including DAU, retention, and first-plays; implemented partition freshness monitoring with staleness gating and multi-environment catalog routing enforced through environment variable contract to prevent data leakage.',
+      'Led adoption of agentic developer tooling that improve team operations across the data team in Next Games studio — Claude Code skills for pipeline scaffolding, dashboard generation, and PR automation — reducing analyst onboarding time from hours to minutes while preserving platform conventions through skill-enforced rules and static import-layer analysis.',
     ],
   },
   {
