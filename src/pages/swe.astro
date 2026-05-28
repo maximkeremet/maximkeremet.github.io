@@ -11,8 +11,14 @@ const roleProfile = profiles.swe;
 
 <BaseLayout title="Maxim Keremet — Software Engineer" roleProfile={roleProfile}>
   <Hero person={person} roleProfile={roleProfile} />
-  <SkillsSection skills={skills} profile={roleProfile} />
-  <RoleList title="Experience" roles={experience} profile={roleProfile} />
-  <RoleList title="Extracurricular Activity" roles={extracurricular} profile={roleProfile} />
-  <EducationSection education={education} />
+  <div class="cv-layout">
+    <aside class="cv-sidebar">
+      <SkillsSection skills={skills} profile={roleProfile} />
+    </aside>
+    <div class="cv-main">
+      <RoleList title="Experience" roles={experience} profile={roleProfile} />
+      <RoleList title="Extracurricular Activity" roles={extracurricular} profile={roleProfile} />
+      <EducationSection education={education} />
+    </div>
+  </div>
 </BaseLayout>

@@ -352,15 +352,21 @@ nav .profile-sep {
   margin-bottom: 2rem;
 }
 
-/* Two-column CV layout */
+/* Two-column CV layout - main on left, skills sidebar on right (screen only) */
 .cv-layout {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  grid-template-areas: "main sidebar";
   gap: 2.5rem;
   align-items: start;
 }
 
+.cv-main {
+  grid-area: main;
+}
+
 .cv-sidebar {
+  grid-area: sidebar;
   position: sticky;
   top: 1rem;
 }
@@ -543,6 +549,16 @@ nav .profile-sep {
   .page-title,
   .page-subtitle {
     display: none;
+  }
+
+  /* Flatten CV layout: skills appears first (above experience), full width */
+  .cv-layout {
+    display: block;
+  }
+
+  .cv-sidebar {
+    position: static;
+    margin-bottom: 0.75rem;
   }
 }
 

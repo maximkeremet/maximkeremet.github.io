@@ -9,12 +9,6 @@ interface Props {
 
 const { title, roleProfile } = Astro.props;
 
-const profileLinks: { id: string; label: string; href: string }[] = [
-  { id: 'main', label: 'Main', href: '/' },
-  { id: 'de', label: 'DE + MLOps', href: '/de' },
-  { id: 'swe', label: 'SWE', href: '/swe' },
-];
-
 const downloadName = `${roleProfile.id === 'main' ? 'data_engineer' : roleProfile.id}_maxim_keremet_cv.pdf`;
 ---
 
@@ -28,14 +22,7 @@ const downloadName = `${roleProfile.id === 'main' ? 'data_engineer' : roleProfil
   </head>
   <body>
     <nav>
-      <span class="profile-switcher">
-        {profileLinks.map((link, i) => (
-          <>
-            <a href={link.href} class={roleProfile.id === link.id ? 'active' : ''}>{link.label}</a>
-            {i < profileLinks.length - 1 && <span class="profile-sep">·</span>}
-          </>
-        ))}
-      </span>
+      <a href="/" class="active">CV</a>
       <span class="spacer"></span>
       <a href={`/assets/${roleProfile.pdfFilename}`} download={downloadName} class="download-btn">Download CV ↓</a>
     </nav>
