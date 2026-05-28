@@ -95,6 +95,7 @@ nav .download-btn:hover {
   height: 110px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center 60%;
   flex-shrink: 0;
 }
 
@@ -388,5 +389,149 @@ nav .download-btn:hover {
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
   white-space: nowrap;
+}
+
+/* Print styles - compact 2-page CV layout */
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm 12mm;
+  }
+
+  html {
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  body {
+    max-width: none;
+    padding: 0;
+  }
+
+  nav {
+    display: none !important;
+  }
+
+  /* Hero — tighter */
+  .hero {
+    gap: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-avatar,
+  .hero-avatar-placeholder {
+    width: 78px;
+    height: 78px;
+  }
+
+  .hero-name {
+    font-size: 1.9rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .hero-title,
+  .hero-contacts,
+  .hero-location {
+    font-size: 0.78rem;
+    margin-bottom: 0.25rem;
+  }
+
+  /* Section titles tighter */
+  .section-title {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0.75rem;
+  }
+
+  .section-divider {
+    margin-bottom: 0.5rem;
+    border-top-width: 1px;
+  }
+
+  /* Skills — compress badges and gaps */
+  .skills-list {
+    gap: 0.35rem;
+  }
+
+  .skill-group {
+    gap: 0.15rem;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: baseline;
+  }
+
+  .skill-category {
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  .skill-badges {
+    gap: 0.2rem;
+  }
+
+  .skill-badge {
+    background: #f0f0f0;
+    padding: 0.08rem 0.4rem;
+    font-size: 0.72rem;
+    border-radius: 3px;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Role entries tighter, avoid splitting across pages */
+  .role {
+    margin-bottom: 0.65rem;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .role-header {
+    gap: 0.3rem;
+    margin-bottom: 0.05rem;
+  }
+
+  .role-company {
+    font-size: 0.92rem;
+  }
+
+  .role-company-note,
+  .role-location,
+  .role-title,
+  .role-dates {
+    font-size: 0.75rem;
+  }
+
+  .role-bullets {
+    margin-top: 0.2rem;
+    padding-left: 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .role-bullets li {
+    margin-bottom: 0.1rem;
+  }
+
+  /* Education — compact */
+  .edu-entry {
+    margin-bottom: 0.4rem;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .edu-left .edu-school {
+    font-size: 0.9rem;
+  }
+
+  .edu-left .edu-degree,
+  .edu-right .edu-location,
+  .edu-right .edu-dates {
+    font-size: 0.75rem;
+  }
+
+  /* Hide page-only chrome (back-buttons, separate page elements) */
+  .page-title,
+  .page-subtitle {
+    display: none;
+  }
 }
 
