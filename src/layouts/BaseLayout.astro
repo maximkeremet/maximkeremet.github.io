@@ -1,12 +1,21 @@
 ---
 import '../styles/global.css';
+import type { Profile } from '../data/cv';
 
 interface Props {
   title: string;
-  activePage: 'cv' | 'work' | 'projects';
+  roleProfile: Profile;
 }
 
-const { title, activePage } = Astro.props;
+const { title, roleProfile } = Astro.props;
+
+const profileLinks: { id: string; label: string; href: string }[] = [
+  { id: 'main', label: 'Main', href: '/' },
+  { id: 'de', label: 'DE + MLOps', href: '/de' },
+  { id: 'swe', label: 'SWE', href: '/swe' },
+];
+
+const downloadName = `${roleProfile.id === 'main' ? 'data_engineer' : roleProfile.id}_maxim_keremet_cv.pdf`;
 ---
 
 <!doctype html>
@@ -19,9 +28,16 @@ const { title, activePage } = Astro.props;
   </head>
   <body>
     <nav>
-      <a href="/" class={activePage === 'cv' ? 'active' : ''}>CV</a>
+      <span class="profile-switcher">
+        {profileLinks.map((link, i) => (
+          <>
+            <a href={link.href} class={roleProfile.id === link.id ? 'active' : ''}>{link.label}</a>
+            {i < profileLinks.length - 1 && <span class="profile-sep">·</span>}
+          </>
+        ))}
+      </span>
       <span class="spacer"></span>
-      <a href="/assets/cv.pdf" download="data_engineer_maxim_keremet_cv.pdf" class="download-btn">Download CV ↓</a>
+      <a href={`/assets/${roleProfile.pdfFilename}`} download={downloadName} class="download-btn">Download CV ↓</a>
     </nav>
     <main>
       <slot />

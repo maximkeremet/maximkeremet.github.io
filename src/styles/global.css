@@ -69,6 +69,17 @@ nav .download-btn:hover {
   background: #c94d1e;
 }
 
+nav .profile-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+
+nav .profile-sep {
+  color: #ccc;
+}
+
 .section-title {
   font-size: 1.35rem;
   font-weight: 700;

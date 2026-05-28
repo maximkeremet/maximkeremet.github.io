@@ -3,6 +3,11 @@ export interface SkillCategory {
   items: string;
 }
 
+export interface Bullet {
+  text: string;
+  tags: string[];
+}
+
 export interface Role {
   company: string;
   companyNote?: string;
@@ -10,7 +15,7 @@ export interface Role {
   location: string;
   start: string;
   end: string;
-  bullets: string[];
+  bullets: Bullet[];
 }
 
 export interface EducationEntry {
@@ -21,9 +26,79 @@ export interface EducationEntry {
   end: string;
 }
 
-export const profile = {
+export type ProfileId = 'main' | 'de' | 'swe';
+
+export interface Profile {
+  id: ProfileId;
+  title: string;
+  /** Skill categories listed in display order. Categories not listed are appended. */
+  skillOrder: string[];
+  /** Bullet tag priority. Lower index = surfaced earlier. Bullets without any
+   *  listed tag are appended in their declared order. */
+  bulletPriority: string[];
+  /** PDF filename (relative to /assets/) and download attribute. */
+  pdfFilename: string;
+}
+
+export const profiles: Record<ProfileId, Profile> = {
+  main: {
+    id: 'main',
+    title: 'Data Engineer · MLOps · AI Engineering',
+    skillOrder: [
+      'Agentic Coding',
+      'Programming & data processing',
+      'Pipelines & orchestration',
+      'Storage & warehousing',
+      'Streaming & real-time',
+      'MLOps & experimentation',
+      'Cloud platforms',
+      'DevOps & infra',
+      'Observability & reliability',
+      'Visualization & BI',
+    ],
+    bulletPriority: ['ai', 'platform', 'de', 'mlops', 'ml', 'swe'],
+    pdfFilename: 'cv.pdf',
+  },
+  de: {
+    id: 'de',
+    title: 'Data Engineer · MLOps',
+    skillOrder: [
+      'Programming & data processing',
+      'Pipelines & orchestration',
+      'Storage & warehousing',
+      'Streaming & real-time',
+      'Cloud platforms',
+      'DevOps & infra',
+      'MLOps & experimentation',
+      'Observability & reliability',
+      'Visualization & BI',
+      'Agentic Coding',
+    ],
+    bulletPriority: ['de', 'platform', 'mlops', 'ml', 'ai', 'swe'],
+    pdfFilename: 'cv-de.pdf',
+  },
+  swe: {
+    id: 'swe',
+    title: 'Software Engineer · Data Platforms',
+    skillOrder: [
+      'Programming & data processing',
+      'DevOps & infra',
+      'Cloud platforms',
+      'Observability & reliability',
+      'Pipelines & orchestration',
+      'Storage & warehousing',
+      'Streaming & real-time',
+      'Visualization & BI',
+      'MLOps & experimentation',
+      'Agentic Coding',
+    ],
+    bulletPriority: ['swe', 'platform', 'de', 'ai', 'mlops', 'ml'],
+    pdfFilename: 'cv-swe.pdf',
+  },
+};
+
+export const person = {
   name: { first: 'Maxim', last: 'Keremet' },
-  title: 'Data Engineer · MLOps',
   email: 'maximkeremet@gmail.com',
   github: 'maximkeremet',
   linkedin: 'maximkeremet',
@@ -32,7 +107,7 @@ export const profile = {
   avatarPath: '/images/avatar.jpg',
 };
 
-export type Profile = typeof profile;
+export type Person = typeof person;
 
 export const skills: SkillCategory[] = [
   { category: 'Agentic Coding', items: 'Claude Code, Custom AI Agents, Agentic Workflows, Context Engineering, Strands SDK, Braintrust' },
@@ -56,12 +131,30 @@ export const experience: Role[] = [
     start: 'Oct 2024',
     end: 'Current',
     bullets: [
-      'Maintain and enhance the full data engineering stack for Next Games studio - raw event streaming pipelines, batch ETL pipelines for analytical datasets, and a suite of backend applications serving player support, core games backend, product managers, and studio leadership; aligning all work with Netflix paved road infrastructure standards.',
-      'Engineered a context-driven agentic analytics platform where AI agent skills supply structured context - layering rules, schema conventions, table definition templates - that routes an agent to scaffold production-grade data pipelines and self-service dashboards end-to-end, enforcing architectural conventions and import-layer constraints without manual review bottleneck.',
-      'Built a suite of specialised data engineering agents using Strands SDK that improve team operations and day-to-day productivity: a workflow triage agent that monitors all team data pipelines, diagnoses failures and root causes through structured reasoning, and acts according to the decision policy - escalates, restarts run or drafts a patch PR; and a context-aware review agent tailored specifically to data engineering workflow definition contracts that communicates with the data platform for fetching additional context and running test runs via MCP, ensuring data pipeline contributions meet quality and conventions consistently.',
-      'Designed and maintained game analytics data pipelines (in-house orchestrator + Spark SQL + Apache Iceberg) for KPIs including DAU, retention, and first-plays; implemented partition freshness monitoring with staleness gating and multi-environment catalog routing enforced through environment variable contract to prevent data leakage.',
-      'Built and maintained Games Analytics Home - an internal analytics hub serving all leadership layers from game PMs and studio managers to vertical leads and Netflix Games President; provides a unified UI with reusable widget contracts and shared component library, surfacing game and studio performance metrics across engagement, retention, player states, and releases; implemented and maintained by a squad of 2, driving all infrastructure and development areas.',
-      'Led adoption of agentic developer tooling that improve team operations across the data team in Next Games studio - Claude Code skills for pipeline scaffolding, dashboard generation, and PR automation - reducing analyst onboarding time from hours to minutes while preserving platform conventions through skill-enforced rules and static import-layer analysis.',
+      {
+        text: 'Maintain and enhance the full data engineering stack for Next Games studio - raw event streaming pipelines, batch ETL pipelines for analytical datasets, and a suite of backend applications serving player support, core games backend, product managers, and studio leadership; aligning all work with Netflix paved road infrastructure standards.',
+        tags: ['de', 'platform'],
+      },
+      {
+        text: 'Engineered a context-driven agentic analytics platform where AI agent skills supply structured context - layering rules, schema conventions, table definition templates - that routes an agent to scaffold production-grade data pipelines and self-service dashboards end-to-end, enforcing architectural conventions and import-layer constraints without manual review bottleneck.',
+        tags: ['ai', 'platform'],
+      },
+      {
+        text: 'Built a suite of specialised data engineering agents using Strands SDK that improve team operations and day-to-day productivity: a workflow triage agent that monitors all team data pipelines, diagnoses failures and root causes through structured reasoning, and acts according to the decision policy - escalates, restarts run or drafts a patch PR; and a context-aware review agent tailored specifically to data engineering workflow definition contracts that communicates with the data platform for fetching additional context and running test runs via MCP, ensuring data pipeline contributions meet quality and conventions consistently.',
+        tags: ['ai', 'de'],
+      },
+      {
+        text: 'Designed and maintained game analytics data pipelines (in-house orchestrator + Spark SQL + Apache Iceberg) for KPIs including DAU, retention, and first-plays; implemented partition freshness monitoring with staleness gating and multi-environment catalog routing enforced through environment variable contract to prevent data leakage.',
+        tags: ['de'],
+      },
+      {
+        text: 'Built and maintained Games Analytics Home - an internal analytics hub serving all leadership layers from game PMs and studio managers to vertical leads and Netflix Games President; provides a unified UI with reusable widget contracts and shared component library, surfacing game and studio performance metrics across engagement, retention, player states, and releases; implemented and maintained by a squad of 2, driving all infrastructure and development areas.',
+        tags: ['swe', 'platform'],
+      },
+      {
+        text: 'Led adoption of agentic developer tooling that improve team operations across the data team in Next Games studio - Claude Code skills for pipeline scaffolding, dashboard generation, and PR automation - reducing analyst onboarding time from hours to minutes while preserving platform conventions through skill-enforced rules and static import-layer analysis.',
+        tags: ['ai', 'platform'],
+      },
     ],
   },
   {
@@ -72,11 +165,26 @@ export const experience: Role[] = [
     start: 'Aug 2022',
     end: 'Sep 2024',
     bullets: [
-      'Designed and built a self-service workflow platform for analysts - a YAML DSL that compiled to Dagster pipeline definitions, separating analyst business logic from data engineering infrastructure (replacing a monorepo Airflow setup shared by 100+ analyst and DE contributors); owned the platform end-to-end including CI/CD, infrastructure, Snowflake integration, and user-facing documentation.',
-      'Led migration of 300+ daily aggregation pipelines from the Airflow monorepo to the new Dagster-based platform; ran onboarding sessions for analyst teams across support, product, customer, and courier verticals to ramp them onto the new tooling.',
-      'Designed a standard observability layer for the team\'s application suite - wired DataDog metric and annotation collection from container and app instrumentation so every service had baseline visibility and alerting out of the box.',
-      'On-call rotation for the batch platform; regularly triaged incidents (DAG failures, missing data, infra regressions) and contributed to postmortems and policy changes - including revoking dev-environment grants to test Snowflake warehouses after a runaway-task incident.',
-      'Enhanced Snowflake ingestion tasks landing parsed events into the warehouse using Snowflake Scripting - reduced runtime boilerplate and added an events-metadata table tracking sources, error rates, and failure reasons.',
+      {
+        text: 'Designed and built a self-service workflow platform for analysts - a YAML DSL that compiled to Dagster pipeline definitions, separating analyst business logic from data engineering infrastructure (replacing a monorepo Airflow setup shared by 100+ analyst and DE contributors); owned the platform end-to-end including CI/CD, infrastructure, Snowflake integration, and user-facing documentation.',
+        tags: ['platform', 'de', 'swe'],
+      },
+      {
+        text: 'Led migration of 300+ daily aggregation pipelines from the Airflow monorepo to the new Dagster-based platform; ran onboarding sessions for analyst teams across support, product, customer, and courier verticals to ramp them onto the new tooling.',
+        tags: ['de', 'platform'],
+      },
+      {
+        text: "Designed a standard observability layer for the team's application suite - wired DataDog metric and annotation collection from container and app instrumentation so every service had baseline visibility and alerting out of the box.",
+        tags: ['swe', 'platform'],
+      },
+      {
+        text: 'On-call rotation for the batch platform; regularly triaged incidents (DAG failures, missing data, infra regressions) and contributed to postmortems and policy changes - including revoking dev-environment grants to test Snowflake warehouses after a runaway-task incident.',
+        tags: ['de', 'swe'],
+      },
+      {
+        text: 'Enhanced Snowflake ingestion tasks landing parsed events into the warehouse using Snowflake Scripting - reduced runtime boilerplate and added an events-metadata table tracking sources, error rates, and failure reasons.',
+        tags: ['de'],
+      },
     ],
   },
   {
@@ -87,12 +195,30 @@ export const experience: Role[] = [
     start: 'Feb 2021',
     end: 'May 2022',
     bullets: [
-      'IC tech lead within a 10-person cross-functional CVM team (managers, data scientists, data stewards), with 2 senior MLOps engineers in scope; accountable for the production ML layer and the team\'s k8s/Spark tooling, bridging data science research and production.',
-      'Designed and built the pipeline from data scientists\' ad-hoc notebooks to a production-grade modular ML platform - turning experimental work into iterable, scalable services serving X5\'s loyalty card pool of 50M+ customers.',
-      'Designed and built the full ML model lifecycle on Airflow + MLflow + Spark + Superset: training, scheduled and on-demand retraining, feature collection, feature matching for sample evaluation, full-population inference, metrics calculation, and result visualisation for both technical and business stakeholders.',
-      'Built the team\'s Feature Store with a Python package as the unified API for analysts, data scientists, and production services - single contract for accessing engineered features across all use cases.',
-      'Built a data monitoring pipeline (PySpark + Airflow + Superset + Postgres) tracking model and feature health across all production ML tables - classification quality metrics (precision, recall, F1), output score drift, and volume / freshness checks - sliced by categorical dimensions like marketing channel for targeted diagnosis.',
-      'Deployed all team ML tooling (Airflow, Superset, MLflow, Datahub) onto the company\'s k8s and Spark clusters; built fully automated CI/CD (GitLab CI + Docker + Helm + Rancher) for all containerized services.',
+      {
+        text: "IC tech lead within a 10-person cross-functional CVM team (managers, data scientists, data stewards), with 2 senior MLOps engineers in scope; accountable for the production ML layer and the team's k8s/Spark tooling, bridging data science research and production.",
+        tags: ['mlops', 'platform'],
+      },
+      {
+        text: "Designed and built the pipeline from data scientists' ad-hoc notebooks to a production-grade modular ML platform - turning experimental work into iterable, scalable services serving X5's loyalty card pool of 50M+ customers.",
+        tags: ['mlops', 'ml'],
+      },
+      {
+        text: 'Designed and built the full ML model lifecycle on Airflow + MLflow + Spark + Superset: training, scheduled and on-demand retraining, feature collection, feature matching for sample evaluation, full-population inference, metrics calculation, and result visualisation for both technical and business stakeholders.',
+        tags: ['mlops', 'ml'],
+      },
+      {
+        text: "Built the team's Feature Store with a Python package as the unified API for analysts, data scientists, and production services - single contract for accessing engineered features across all use cases.",
+        tags: ['mlops'],
+      },
+      {
+        text: 'Built a data monitoring pipeline (PySpark + Airflow + Superset + Postgres) tracking model and feature health across all production ML tables - classification quality metrics (precision, recall, F1), output score drift, and volume / freshness checks - sliced by categorical dimensions like marketing channel for targeted diagnosis.',
+        tags: ['mlops', 'ml'],
+      },
+      {
+        text: "Deployed all team ML tooling (Airflow, Superset, MLflow, Datahub) onto the company's k8s and Spark clusters; built fully automated CI/CD (GitLab CI + Docker + Helm + Rancher) for all containerized services.",
+        tags: ['platform', 'swe'],
+      },
     ],
   },
   {
@@ -103,9 +229,12 @@ export const experience: Role[] = [
     start: 'Feb 2020',
     end: 'Nov 2021',
     bullets: [
-      'Built pipeline for collecting product metrics for all analytical use cases.',
-      'Performed analytical ad-hoc analysis tasks (EDA, product and tech performance dashboards, coronavirus reporting, etc.).',
-      'Improved AB testing framework methodology (researching CUPED and different statistical test approaches), developing custom frontend and backend on Dash and ClickHouse.',
+      { text: 'Built pipeline for collecting product metrics for all analytical use cases.', tags: ['de'] },
+      { text: 'Performed analytical ad-hoc analysis tasks (EDA, product and tech performance dashboards, coronavirus reporting, etc.).', tags: ['de'] },
+      {
+        text: 'Improved AB testing framework methodology (researching CUPED and different statistical test approaches), developing custom frontend and backend on Dash and ClickHouse.',
+        tags: ['de', 'swe'],
+      },
     ],
   },
   {
@@ -116,8 +245,14 @@ export const experience: Role[] = [
     start: 'Nov 2018',
     end: 'Feb 2020',
     bullets: [
-      'Built assortment matrix optimizer as part of a web-based platform for category managers.',
-      'Full stack development from prototype to production: business logic, testing, documentation, logging, alerting, debugging, API integration with frontend services and Kafka, deploying in Kubernetes.',
+      {
+        text: 'Built assortment matrix optimizer as part of a web-based platform for category managers.',
+        tags: ['swe', 'de'],
+      },
+      {
+        text: 'Full stack development from prototype to production: business logic, testing, documentation, logging, alerting, debugging, API integration with frontend services and Kafka, deploying in Kubernetes.',
+        tags: ['swe'],
+      },
     ],
   },
   {
@@ -127,8 +262,8 @@ export const experience: Role[] = [
     start: 'Jul 2017',
     end: 'Nov 2018',
     bullets: [
-      'Performed analytical ad-hoc analysis tasks.',
-      'Performed typical DS workflow: data cleaning → exploring data → building machine learning models → performing ML evaluations.',
+      { text: 'Performed analytical ad-hoc analysis tasks.', tags: ['de'] },
+      { text: 'Performed typical DS workflow: data cleaning → exploring data → building machine learning models → performing ML evaluations.', tags: ['ml'] },
     ],
   },
 ];
@@ -141,11 +276,11 @@ export const extracurricular: Role[] = [
     start: 'Feb 2025',
     end: 'Jun 2025',
     bullets: [
-      'Constructed curriculum on the module/lesson level, educational results, practical assignments and other program-associated docs.',
-      'Hiring and managing a group of 5+ authors to produce educational content, assignments and infrastructure for the program.',
-      'Hiring support team members - course mentors and assignment reviewers.',
-      'Acting as an author and contributing to the program.',
-      'Collaborating with devops team to provision, set up course infrastructure and optimizing cloud costs per student.',
+      { text: 'Constructed curriculum on the module/lesson level, educational results, practical assignments and other program-associated docs.', tags: ['mlops'] },
+      { text: 'Hiring and managing a group of 5+ authors to produce educational content, assignments and infrastructure for the program.', tags: ['mlops'] },
+      { text: 'Hiring support team members - course mentors and assignment reviewers.', tags: ['mlops'] },
+      { text: 'Acting as an author and contributing to the program.', tags: ['mlops'] },
+      { text: 'Collaborating with devops team to provision, set up course infrastructure and optimizing cloud costs per student.', tags: ['mlops', 'swe'] },
     ],
   },
   {
@@ -155,9 +290,9 @@ export const extracurricular: Role[] = [
     start: 'Jan 2024',
     end: 'Current',
     bullets: [
-      "Designed a bachelor's course in Python with profile tracks for Data analyst, ML engineer and SWE.",
-      'Leading a group of authors, contributing with content myself, designing student learning experience, and building the production side of the course.',
-      'Contributing to data engineering course.',
+      { text: "Designed a bachelor's course in Python with profile tracks for Data analyst, ML engineer and SWE.", tags: ['swe'] },
+      { text: 'Leading a group of authors, contributing with content myself, designing student learning experience, and building the production side of the course.', tags: ['swe'] },
+      { text: 'Contributing to data engineering course.', tags: ['de'] },
     ],
   },
   {
@@ -167,8 +302,8 @@ export const extracurricular: Role[] = [
     start: 'Jul 2019',
     end: 'Current',
     bullets: [
-      'Contributed with a 30-hour course module on Hadoop, PySpark and ML in Spark.',
-      'Mentored over 1,000 students on their code.',
+      { text: 'Contributed with a 30-hour course module on Hadoop, PySpark and ML in Spark.', tags: ['de', 'ml'] },
+      { text: 'Mentored over 1,000 students on their code.', tags: ['de'] },
     ],
   },
   {
@@ -178,8 +313,8 @@ export const extracurricular: Role[] = [
     start: 'Sep 2018',
     end: 'Dec 2019',
     bullets: [
-      'Preparing lessons and materials for students of mlcourse.ai.',
-      'Giving guidance on assignments, answering questions and making tutorials.',
+      { text: 'Preparing lessons and materials for students of mlcourse.ai.', tags: ['ml'] },
+      { text: 'Giving guidance on assignments, answering questions and making tutorials.', tags: ['ml'] },
     ],
   },
 ];
@@ -207,3 +342,39 @@ export const education: EducationEntry[] = [
     end: 'Aug 2012',
   },
 ];
+
+/** Sort bullets in-place based on the profile's bulletPriority. Stable. */
+export function sortBullets(bullets: Bullet[], profile: Profile): Bullet[] {
+  const rank = (b: Bullet): number => {
+    for (let i = 0; i < profile.bulletPriority.length; i++) {
+      if (b.tags.includes(profile.bulletPriority[i])) return i;
+    }
+    return profile.bulletPriority.length;
+  };
+  return [...bullets]
+    .map((bullet, index) => ({ bullet, index }))
+    .sort((a, b) => {
+      const rA = rank(a.bullet);
+      const rB = rank(b.bullet);
+      if (rA !== rB) return rA - rB;
+      return a.index - b.index;
+    })
+    .map((entry) => entry.bullet);
+}
+
+/** Sort skill categories based on the profile's skillOrder. Unlisted categories appended. */
+export function sortSkills(skills: SkillCategory[], profile: Profile): SkillCategory[] {
+  const orderIndex = (c: string): number => {
+    const i = profile.skillOrder.indexOf(c);
+    return i === -1 ? profile.skillOrder.length : i;
+  };
+  return [...skills]
+    .map((skill, index) => ({ skill, index }))
+    .sort((a, b) => {
+      const rA = orderIndex(a.skill.category);
+      const rB = orderIndex(b.skill.category);
+      if (rA !== rB) return rA - rB;
+      return a.index - b.index;
+    })
+    .map((entry) => entry.skill);
+}

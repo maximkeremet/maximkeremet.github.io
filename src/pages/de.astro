@@ -6,10 +6,10 @@ import RoleList from '../components/RoleList.astro';
 import EducationSection from '../components/EducationSection.astro';
 import { person, skills, experience, extracurricular, education, profiles } from '../data/cv';
 
-const roleProfile = profiles.main;
+const roleProfile = profiles.de;
 ---
 
-<BaseLayout title="Maxim Keremet — Data Engineer · MLOps · AI Engineering" roleProfile={roleProfile}>
+<BaseLayout title="Maxim Keremet — Data Engineer · MLOps" roleProfile={roleProfile}>
   <Hero person={person} roleProfile={roleProfile} />
   <SkillsSection skills={skills} profile={roleProfile} />
   <RoleList title="Experience" roles={experience} profile={roleProfile} />

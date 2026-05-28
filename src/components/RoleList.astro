@@ -1,12 +1,14 @@
 ---
-import type { Role } from '../data/cv';
+import type { Role, Profile } from '../data/cv';
+import { sortBullets } from '../data/cv';
 
 interface Props {
   title: string;
   roles: Role[];
+  profile: Profile;
 }
 
-const { title, roles } = Astro.props;
+const { title, roles, profile } = Astro.props;
 ---
 
 <section>
@@ -28,7 +30,7 @@ const { title, roles } = Astro.props;
         <span class="role-dates">{role.start} – {role.end}</span>
       </div>
       <ul class="role-bullets">
-        {role.bullets.map((bullet) => <li>{bullet}</li>)}
+        {sortBullets(role.bullets, profile).map((bullet) => <li>{bullet.text}</li>)}
       </ul>
     </div>
   ))}
